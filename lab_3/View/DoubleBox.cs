@@ -9,7 +9,7 @@ namespace lab_3.View
         private double _value;
         private double _max_value;
         private double _min_value;
-        private double _num_simbols_after_com;
+        private int _num_simbols_after_com;
 
         public event RoutedEventHandler ErrorSymbol
         {
@@ -49,11 +49,20 @@ namespace lab_3.View
         public static readonly DependencyProperty MinValueProperty =
             DependencyProperty.Register("MinValue", typeof(double), typeof(DoubleBox), new PropertyMetadata(-10000.0));
 
+        public int NumSimbols
+        {
+            get { return (int)GetValue(NumSimbolsProperty); }
+            set { SetValue(NumSimbolsProperty, value); }
+        }
+        public static readonly DependencyProperty NumSimbolsProperty =
+            DependencyProperty.Register("NumSimbols", typeof(int), typeof(DoubleBox), new PropertyMetadata(2));
+
         public DoubleBox()
         {
             TextChanged += tbNumBox_TextChanged;
             _min_value = MinValue;
             _max_value = MaxValue;
+            _num_simbols_after_com = NumSimbols;
             _value = 0;
         }
 
@@ -68,16 +77,20 @@ namespace lab_3.View
         {
             _min_value = MinValue;
             _max_value = MaxValue;
+            _num_simbols_after_com = NumSimbols;
+
             string _text = Text;
             double el = 0;
             _text = _text.Replace(".", ",");
             string[] temp = _text.Split(',');
             if (temp.Length == 2)
-                while (temp[1].Length > 2)
+            {
+                while (temp[1].Length > _num_simbols_after_com)
                 {
                     _text = _text.Remove(_text.Length - 1);
                     temp = _text.Split(',');
                 }
+            }
 
             if (_text != "")
             {
