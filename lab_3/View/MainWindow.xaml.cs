@@ -24,5 +24,15 @@ namespace lab_3
         {
             InitializeComponent();
         }
+
+        private void SettingsVisibilityHidden(object sender, RoutedEventArgs e)
+        {
+            g_settings.Visibility = Visibility.Hidden;
+        }
+
+        private void SettingsVisibilityVisibility(object sender, RoutedEventArgs e)
+        {
+            g_settings.Visibility = Visibility.Visible;
+        }
     }
 }
