@@ -115,6 +115,8 @@ namespace lab_3
             }
         }
 
+
+
         private void SettingsValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (db_left_border == null || db_right_border == null)
@@ -172,6 +174,43 @@ namespace lab_3
             }
             PointsPositive = new ObservableCollection<Point>(points_p);
             PointsNegative = new ObservableCollection<Point>(points_n);
-        }        
+        }
+
+        private void ReadSettingsValue(object sender, RoutedEventArgs e)
+        {
+            string file_path = string.Empty;
+            string file_name = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    file_path = openFileDialog.FileName;
+                    file_name = Path.GetFileName(file_path);
+                }
+            }
+
+            if (file_path != string.Empty)
+            {
+                double[] settings;
+                if (MainVM.ReadFile(out settings, file_path))
+                {
+                    db_size.Value = settings[0];
+                    db_left_border.Value = settings[1];
+                    db_right_border.Value = settings[2];
+                    db_step.Value = settings[3];
+                    MessageBox.Show($"Файл \"{file_name}\" прочтен");
+                }
+                else
+                {
+                    MessageBox.Show($"Файл \"{file_name}\" не содержит исходный текст");
+                }
+            }
+        }
     }
 }

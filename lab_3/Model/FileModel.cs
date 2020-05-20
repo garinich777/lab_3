@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Text.RegularExpressions;
 
 namespace lab_3.Model
 {
@@ -23,9 +22,9 @@ namespace lab_3.Model
             using (StreamReader reader = new StreamReader(path))
                 content = reader.ReadToEnd();
 
-            string[] settings_string = content.Split(Environment.NewLine.ToCharArray());
+            string[] settings_string = content.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
-            if (settings_string.Length != 5)
+            if (settings_string.Length != 4)
                 return false;            
 
             for (int i = 0; i < 4; i++)

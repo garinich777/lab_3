@@ -14,9 +14,13 @@ namespace lab_3.VM
         {
             if (settings.Length != 4 || settings == null)
                 return false;
-
-
+            FileModel.WriteFile(settings, file_path);
             return true;
+        }
+
+        public static bool ReadFile(out double[] settings, string file_path)
+        {            
+            return FileModel.TryReadArray(out settings, file_path);
         }
 
         public static string AboutMessage()
