@@ -60,51 +60,6 @@ namespace lab_3
                 SetValue(AProperty, value);
             }
         }
-
-        public static readonly DependencyProperty BProperty = DependencyProperty.Register(
-            "B", typeof(double), typeof(MainWindow), new PropertyMetadata(3.8));
-
-        public double B
-        {
-            get
-            {
-                return (double)GetValue(BProperty);
-            }
-            set
-            {
-                SetValue(BProperty, value);
-            }
-        }
-
-        public static readonly DependencyProperty RangeFromProperty = DependencyProperty.Register(
-            "RangeFrom", typeof(double), typeof(MainWindow), new PropertyMetadata(default(double)));
-
-        public double RangeFrom
-        {
-            get
-            {
-                return (double)GetValue(RangeFromProperty);
-            }
-            set
-            {
-                SetValue(RangeFromProperty, value);
-            }
-        }
-
-        public static readonly DependencyProperty RangeToProperty = DependencyProperty.Register(
-            "RangeTo", typeof(double), typeof(MainWindow), new PropertyMetadata(default(double)));
-
-        public double RangeTo
-        {
-            get
-            {
-                return (double)GetValue(RangeToProperty);
-            }
-            set
-            {
-                SetValue(RangeToProperty, value);
-            }
-        }
         #endregion
 
         public MainWindow()
@@ -112,7 +67,6 @@ namespace lab_3
             InitializeComponent();
             if (Properties.Settings.Default.AboutShow)
                 AboutProgram();
-
         }
 
         private void SettingsVisibilityHidden(object sender, RoutedEventArgs e)
@@ -152,8 +106,10 @@ namespace lab_3
                     if (!string.IsNullOrEmpty(file_path = saveFileDialog1.FileName))
                     {
                         file_name = Path.GetFileName(file_path);
-                        MainVM.WriteFile(new double[] {,1,1,1 }, file_path);
-                        MessageBox.Show($"Файл \"{file_name}\" успешно записан", file_name);
+                        if(MainVM.WriteFile(new double[] {db_size.Value.Value, db_left_border.Value.Value, db_right_border.Value.Value, db_step.Value.Value}, file_path))
+                            MessageBox.Show($"Файл \"{file_name}\" успешно записан", file_name);
+                        else
+                            MessageBox.Show($"Файл \"{file_name}\" не удалось записать", file_name);
                     }
                 }
             }
