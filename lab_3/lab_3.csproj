@@ -61,6 +61,10 @@
     <Compile Include="View\DoubleBox.cs" />
     <Compile Include="View\LaibleConvertor.cs" />
     <Compile Include="View\PointsToPathConverter.cs" />
+    <Compile Include="View\TableValue.cs" />
+    <Compile Include="View\TableValueWindow.xaml.cs">
+      <DependentUpon>TableValueWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VM\MainVM.cs" />
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -74,6 +78,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\TableValueWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\MathModel.cs" />
