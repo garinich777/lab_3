@@ -139,7 +139,7 @@ namespace lab_3
 
         private void SettingsValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {           
-            if (db_left_border == null || db_right_border == null)
+            if (db_left_border == null || db_right_border == null || l_error == null)
                 return;
             List<Point> points_p = new List<Point>();
             List<Point> points_n = new List<Point>();
@@ -160,7 +160,16 @@ namespace lab_3
                         db_right_border.Value = db_left_border.Value;
                     else
                         db_left_border.Value = db_right_border.Value;
-                }                    
+                    l_error.Content = "Невозможно построить график";
+                }
+                else if (right_border == 0 && left_border == 0 || Math.Abs(db_left_border.Value.Value) == Math.Abs(A) && Math.Abs(db_right_border.Value.Value) == Math.Abs(A))
+                {                    
+                    l_error.Content = "График выраждаеться в точку";
+                }
+                else
+                {
+                    l_error.Content = string.Empty;
+                }                
             }
 
             for (double x = left_border; x <= left_border + 0.001; x += 0.0001)

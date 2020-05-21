@@ -102,7 +102,7 @@
                         </TransformGroup>
                     </Path.RenderTransform>
                 </Path>
-                
+
                 <Label Content="0" 
                    Canvas.Left="{Binding ElementName=canvas, Path=ActualWidth, Converter={StaticResource DivideByTwo}}" 
                    Canvas.Top="{Binding ElementName=canvas, Path=ActualHeight, Converter={StaticResource DivideByTwo}}"/>
@@ -145,5 +145,6 @@
                 </StackPanel>
             </Border>
         </Grid>
+        <Label x:Name="l_error" Foreground="Red" HorizontalAlignment="Left" Margin="391,-4,0,0" VerticalAlignment="Top" Width="382" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
