@@ -31,7 +31,7 @@ namespace lab_3.VM
             "Написать программу для построения" + Environment.NewLine +
             "графика функции" + Environment.NewLine +
             "Студент группы 484" + Environment.NewLine +
-            "±sqrt((a^2 * x^2 - x^4)/(a^2))" + Environment.NewLine +
+            "±sqrt((a² * x² - x⁴) / a²)" + Environment.NewLine +
             "Осипов Игорь Вадимович" + Environment.NewLine +
             "2020 год";
         }
